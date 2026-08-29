@@ -1,1 +1,2 @@
-It is a testing demo repository for maintaining commit streaks..
+It is a testing demo repository for maintaining commit streaks.
+2
