@@ -20,7 +20,7 @@ jobs:
       - name: Commit and push
         run: |
           git config user.name "Myselfsooraj"
-          git config user.email "YOUR_REAL_NOREPLY_EMAIL_HERE"
+          git config user.email "190881650+Myselfsooraj@users.noreply.github.com"
           git add streak-log.txt
           git commit -m "chore: automated daily update" || echo "No changes to commit"
           git push
