@@ -1,13 +1,1 @@
 It is a testing demo repository for maintaining commit streaks.
-1
-2
-3
-4
-5
-6
-7
-8
-8
-9
-1014
-13
