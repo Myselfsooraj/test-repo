@@ -2,7 +2,7 @@
 
 on:
   schedule:
-    - cron: "0 15 * * *"
+    - cron: '0 15 * * *'   # 15:00 UTC daily — adjust as needed
   workflow_dispatch:
 
 jobs:
@@ -14,13 +14,20 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Update log
-        run: echo "$(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> streak-log.txt
-
-      - name: Commit and push
+      - name: Set up git identity
         run: |
           git config user.name "Myselfsooraj"
           git config user.email "190881650+Myselfsooraj@users.noreply.github.com"
-          git add streak-log.txt
-          git commit -m "chore: automated daily update" || echo "No changes to commit"
-          git push
+
+      - name: Make random number of commits
+        run: |
+          COUNT=$(( (RANDOM % 7) + 8 ))   # random number between 8 and 14
+          echo "Making $COUNT commits today"
+          for i in $(seq 1 $COUNT); do
+            echo "$(date -u '+%Y-%m-%d %H:%M:%S UTC') - update #$i" >> streak-log.txt
+            git add streak-log.txt
+            git commit -m "chore: automated update #$i"
+          done
+
+      - name: Push all commits
+        run: git push
